@@ -21,7 +21,7 @@ public class BulletGenerator : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
 
             // BulletController에서 Shoot 메서드 호출(총알 발사)
-            bullet.GetComponent<BulletController>().Shoot();
+            bullet.GetComponent<BulletController>().ShootToEnemy();
 
 
         }
