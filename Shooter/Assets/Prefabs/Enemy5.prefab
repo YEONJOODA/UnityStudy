@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  health: 10
+  health: 5
   sprites:
   - {fileID: -9606545, guid: c2b5ee0ebb94b544d870ad9c7368a47b, type: 3}
   - {fileID: 1934622946, guid: c2b5ee0ebb94b544d870ad9c7368a47b, type: 3}
@@ -160,3 +160,6 @@ MonoBehaviour:
   maxBulletDelay: 0.2
   goBullet: {fileID: 2704762875199394397, guid: 403b258ce2a7490468526cd393970650, type: 3}
   goPlayer: {fileID: 0}
+  nDmgPoint: 1000
+  objManager: {fileID: 0}
+  name: 

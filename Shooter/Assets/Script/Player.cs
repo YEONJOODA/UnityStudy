@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     public bool[] joyControl;
     public bool isControl;
 
+    public int nScore;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -160,14 +162,14 @@ public class Player : MonoBehaviour
             
             if(life == 0)
             {
-                // gameover()
+                gManager.GameOver();
             }
             else
             {
                 gManager.RespawnPlayer();
             }
 
-            Destroy(collision.gameObject);
+            gameObject.SetActive(false);
         }
     }
 

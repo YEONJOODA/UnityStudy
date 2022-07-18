@@ -18,6 +18,12 @@ public class Enemy : MonoBehaviour
     public GameObject goBullet;
     public GameObject goPlayer;
 
+    public int nDmgPoint;
+
+    public ObjectManager objManager;
+
+    public string name;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +45,10 @@ public class Enemy : MonoBehaviour
         if (curBulletDelay < maxBulletDelay)
             return;
 
-        GameObject createBullet = Instantiate(goBullet, transform.position, Quaternion.identity);
+        //GameObject createBullet = Instantiate(goBullet, transform.position, Quaternion.identity);
+        GameObject createBullet = objManager.MakeObject("EnemyBullet");
+        createBullet.transform.position = transform.position;
+
         Rigidbody2D rd = createBullet.GetComponent<Rigidbody2D>();
 
         Vector3 dirVec = goPlayer.transform.position - transform.position;
@@ -64,14 +73,14 @@ public class Enemy : MonoBehaviour
     {
         if(collision.gameObject.tag == "Border")
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else if(collision.gameObject.tag == "PlayerBullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             OnHit(bullet.power);
 
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
 
         }
     }
@@ -86,7 +95,15 @@ public class Enemy : MonoBehaviour
 
         if(health <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+
+            Player playerLogic = goPlayer.GetComponent<Player>();
+            playerLogic.nScore += nDmgPoint;
         }
+    }
+
+    private void OnEnable()
+    {
+        health = 10;
     }
 }
